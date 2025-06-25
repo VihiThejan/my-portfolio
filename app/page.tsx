@@ -7,6 +7,7 @@ import { Skills } from '@/components/sections/Skills';
 import { TechStack } from '@/components/sections/TechStack';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Footer } from '@/components/sections/Footer';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <TechStack />
       <Testimonials />
       <Footer />
+      <SpeedInsights/>
     </>
   );
 }
