@@ -26,20 +26,11 @@ import {
   Brain
 } from 'lucide-react';
 import { projects } from '@/lib/data';
+import { Project } from '@/types';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 
-// Remove generateStaticParams for now since we disabled export
-// export async function generateStaticParams() {
-//   return projects.map((project) => ({
-//     slug: project.id,
-//   }));
-// }
-
-interface ProjectPageProps {
-  params: {
-    slug: string;
-  };
+interface ProjectPageClientProps {
+  project: Project;
 }
 
 const categoryIcons = {
@@ -51,13 +42,7 @@ const categoryIcons = {
   devops: Code
 };
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = projects.find(p => p.id === params.slug);
-
-  if (!project) {
-    notFound();
-  }
-
+export default function ProjectPageClient({ project }: ProjectPageClientProps) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed': return 'bg-green-500/10 text-green-500 border-green-500/20';
