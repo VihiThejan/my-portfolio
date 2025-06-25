@@ -57,20 +57,18 @@ export function About() {
               <div className="absolute -inset-4 bg-gradient-brand rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
               <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl" />
               
-              {/* Image placeholder with professional styling */}
+              {/* Professional photo */}
               <div className="relative aspect-[4/5] bg-gradient-to-br from-card to-muted rounded-2xl overflow-hidden border border-border/50">
+                <img
+                  src="/pro.jpg"
+                  alt="Vihinsa Thejan Bandara - CEO & Software Engineer"
+                  className="w-full h-full object-cover object-center"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="bg-card/90 backdrop-blur-sm rounded-lg p-4 border border-border/50">
-                    <h3 className="font-semibold text-sm">Thejan Bandara</h3>
+                    <h3 className="font-semibold text-sm">Vihinsa Thejan Bandara</h3>
                     <p className="text-xs text-muted-foreground">CEO & Software Engineer</p>
-                  </div>
-                </div>
-                
-                {/* Professional photo placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 bg-gradient-brand rounded-full flex items-center justify-center">
-                    <span className="text-4xl font-bold text-white">TB</span>
                   </div>
                 </div>
               </div>
@@ -117,11 +115,18 @@ export function About() {
             {/* Download CV Button */}
             <motion.div variants={itemVariants}>
               <Button 
-                size="lg"
-                className="bg-gradient-brand hover:shadow-glow-lg transition-all duration-300 group"
+                className="bg-gradient-brand hover:shadow-glow-lg transition-all duration-300 group px-6 py-3 text-lg"
+                asChild
               >
-                <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                Download CV
+                <a 
+                  href="/Thejan Bandara.pdf" 
+                  download="Thejan Bandara.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                  Download CV
+                </a>
               </Button>
             </motion.div>
           </motion.div>

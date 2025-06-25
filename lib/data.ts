@@ -286,7 +286,7 @@ export const experiences: Experience[] = [
     title: 'CEO & Founder',
     company: 'Vihi IT Solutions',
     location: 'Remote',
-    startDate: '2022-01',
+    startDate: '2023-01',
     current: true,
     description: [
       'Founded and lead a growing technology consultancy specializing in web and mobile development',

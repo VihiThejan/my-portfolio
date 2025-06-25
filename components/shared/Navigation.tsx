@@ -93,7 +93,7 @@ export function Navigation() {
               <span className="text-white font-bold text-sm">TB</span>
             </div>
             <span className="font-bold text-lg gradient-text">
-              Thejan Bandara
+              Vihinsa Thejan Bandara
             </span>
           </motion.div>
 

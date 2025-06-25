@@ -20,10 +20,10 @@ import {
 } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/thejanbandara', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/thejanbandara', label: 'LinkedIn' },
-  { icon: Mail, href: 'mailto:thejan@vihiit.com', label: 'Email' },
-  { icon: Globe, href: 'https://vihiit.com', label: 'Company Website' },
+  { icon: Github, href: 'https://github.com/IT21266300', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/vihinsa-thejan-bandara', label: 'LinkedIn' },
+  { icon: Mail, href: 'mailto:vihinsabandara@gmail.com', label: 'Email' },
+  { icon: Globe, href: 'https://vihiitsolutions.com', label: 'Company Website' },
 ];
 
 const quickLinks = [
@@ -114,19 +114,19 @@ export function Footer() {
                 <div className="flex items-center space-x-3 text-sm">
                   <Mail className="h-4 w-4 text-primary" />
                   <a 
-                    href="mailto:thejan@vihiit.com" 
+                    href="mailto:vihinsabandara@gmail.com" 
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    thejan@vihiit.com
+                    vihinsabandara@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <Phone className="h-4 w-4 text-primary" />
                   <a 
-                    href="tel:+94771234567" 
+                    href="tel:+94713293907" 
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    +94 77 123 4567
+                    +94 71 329 3907
                   </a>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
@@ -223,7 +223,7 @@ export function Footer() {
           className="py-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
         >
           <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <span>© 2024 Thejan Bandara. Made with</span>
+            <span>© 2025 Vihinsa Thejan Bandara. Made with</span>
             <Heart className="h-4 w-4 text-red-500 fill-current" />
             <span>in Sri Lanka</span>
           </div>

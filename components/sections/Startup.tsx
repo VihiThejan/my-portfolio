@@ -105,30 +105,37 @@ export function Startup() {
           </motion.p>
         </motion.div>
 
-        {/* Company Image/Logo Section */}
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="mb-16"
-        >
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-gradient-brand rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
-            <Card className="relative overflow-hidden border-border/50 hover:border-primary/30 transition-all duration-300">
-              <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-primary/5 via-background to-accent/5 flex items-center justify-center">
-                  <div className="text-center space-y-4">
-                    <div className="w-24 h-24 bg-gradient-brand rounded-2xl mx-auto flex items-center justify-center mb-4">
-                      <span className="text-3xl font-bold text-white">VI</span>
-                    </div>
-                    <h3 className="text-2xl font-bold gradient-text">Vihi IT Solutions</h3>
-                    <p className="text-muted-foreground">Innovation • Excellence • Growth</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+       {/* Company Image/Logo Section */}
+<motion.div
+  variants={itemVariants}
+  initial="hidden"
+  animate={inView ? 'visible' : 'hidden'}
+  className="mb-16"
+>
+  <div className="relative group">
+    <div className="absolute -inset-4 bg-gradient-brand rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
+    
+    <Card className="relative overflow-hidden border-border/50 hover:border-primary/30 transition-all duration-300">
+      <CardContent className="p-8">
+        <div className="aspect-video bg-gradient-to-br from-primary/5 via-background to-accent/5 flex items-center justify-center rounded-2xl">
+          <div className="text-center space-y-6">
+            <div className="w-80 h-80 mx-auto">
+              <img 
+                src="/logo.png" 
+                alt="Vihi IT Solutions Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="space-y-2">
+             
+              <p className="text-muted-foreground">Innovation • Excellence • Growth</p>
+            </div>
           </div>
-        </motion.div>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+</motion.div>
 
         {/* Mission & Vision */}
         <motion.div

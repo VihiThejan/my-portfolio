@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://thejanbandara.com',
+    url: 'https://https://vihinsabandara.vercel.app',
     title: 'Thejan Bandara | CEO & Software Engineer',
     description: 'Passionate software engineer and entrepreneur leading Vihi IT Solutions. Specializing in creating innovative digital solutions that transform businesses.',
     siteName: 'Thejan Bandara Portfolio',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Thejan Bandara | CEO & Software Engineer',
     description: 'Passionate software engineer and entrepreneur leading Vihi IT Solutions.',
-    creator: '@thejanbandara',
+    creator: '@vihinsabandara',
   },
   robots: {
     index: true,

@@ -104,7 +104,7 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              Thejan Bandara
+              Vihinsa Thejan Bandara
             </motion.span>
           </h1>
         </motion.div>
@@ -196,8 +196,8 @@ export function Hero() {
           className="flex justify-center items-center gap-6"
         >
           {[
-            { icon: Github, href: 'https://github.com/thejanbandara', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
-            { icon: Linkedin, href: 'https://linkedin.com/in/thejanbandara', label: 'LinkedIn', color: 'hover:text-blue-600' },
+            { icon: Github, href: 'https://github.com/IT21266300', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
+            { icon: Linkedin, href: 'https://www.linkedin.com/in/vihinsa-thejan-bandara', label: 'LinkedIn', color: 'hover:text-blue-600' },
             { icon: Mail, href: 'mailto:vihinsabandara@gmail.com', label: 'Email', color: 'hover:text-primary' },
           ].map((social, index) => (
             <motion.a
