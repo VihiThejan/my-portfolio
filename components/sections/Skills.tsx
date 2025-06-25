@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { IconWrapper } from '@/components/ui/icon-wrapper';
 import { 
   Brain, 
   Code, 
@@ -41,12 +42,34 @@ const categoryColors = {
 };
 
 export function Skills() {
+  const [mounted, setMounted] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <section id="skills" className="py-20 px-6 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Skills & <span className="gradient-text">Expertise</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Loading skills...
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   const categories = ['all', ...Array.from(new Set(skills.map(skill => skill.category)))];
   
@@ -100,7 +123,7 @@ export function Skills() {
           className="text-center mb-16"
         >
           <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 mb-6">
-            <Brain className="h-8 w-8 text-primary" />
+            <IconWrapper Icon={Brain} className="h-8 w-8 text-primary" />
             <span className="text-primary font-semibold uppercase tracking-wider text-sm">Expertise</span>
           </motion.div>
           
@@ -154,7 +177,7 @@ export function Skills() {
                         <CardContent className="p-6">
                           <div className="flex items-center space-x-3 mb-4">
                             <div className={`p-2 rounded-lg bg-gradient-to-br ${categoryColors[skill.category]}`}>
-                              <IconComponent className="h-5 w-5 text-primary" />
+                              <IconWrapper Icon={IconComponent} className="h-5 w-5 text-primary" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <h3 className="font-semibold text-sm truncate">{skill.name}</h3>
@@ -206,7 +229,7 @@ export function Skills() {
                   >
                     <div className="flex items-center space-x-3 mb-6">
                       <div className={`p-3 rounded-xl bg-gradient-to-br ${categoryColors[category as keyof typeof categoryColors]}`}>
-                        <IconComponent className="h-6 w-6 text-primary" />
+                        <IconWrapper Icon={IconComponent} className="h-6 w-6 text-primary" />
                       </div>
                       <div>
                         <h3 className="text-xl font-bold capitalize">
@@ -250,7 +273,7 @@ export function Skills() {
                   <Card className="p-6 border-border/50">
                     <div className="flex items-center space-x-3 mb-4">
                       <div className="p-3 bg-primary/10 rounded-full">
-                        <Award className="h-6 w-6 text-primary" />
+                        <IconWrapper Icon={Award} className="h-6 w-6 text-primary" />
                       </div>
                       <div>
                         <h3 className="font-bold">Experience Level</h3>
@@ -282,7 +305,7 @@ export function Skills() {
                   <Card className="p-6 border-border/50">
                     <div className="flex items-center space-x-3 mb-4">
                       <div className="p-3 bg-accent/10 rounded-full">
-                        <TrendingUp className="h-6 w-6 text-accent" />
+                        <IconWrapper Icon={TrendingUp} className="h-6 w-6 text-accent" />
                       </div>
                       <div>
                         <h3 className="font-bold">Growth Metrics</h3>
@@ -328,7 +351,7 @@ export function Skills() {
                               </div>
                               
                               <div className={`p-2 rounded-lg bg-gradient-to-br ${categoryColors[skill.category]}`}>
-                                <IconComponent className="h-4 w-4 text-primary" />
+                                <IconWrapper Icon={IconComponent} className="h-4 w-4 text-primary" />
                               </div>
                               
                               <div className="flex-1 min-w-0">
@@ -344,7 +367,7 @@ export function Skills() {
                                 <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
                                   <span className="capitalize">{skill.category.replace('-', ' ')}</span>
                                   <div className="flex items-center space-x-1">
-                                    <Clock className="h-3 w-3" />
+                                    <IconWrapper Icon={Clock} className="h-3 w-3" />
                                     <span>{skill.yearsOfExperience}+ years</span>
                                   </div>
                                 </div>
