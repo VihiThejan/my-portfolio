@@ -19,6 +19,25 @@ import {
 } from 'lucide-react';
 import { testimonials } from '@/lib/data';
 
+// Utility function for consistent date formatting
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
+};
+
+// Utility function for month/year formatting
+const formatMonthYear = (dateString: string) => {
+  const date = new Date(dateString);
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  return `${months[date.getMonth()]} ${date.getFullYear()}`;
+};
+
 export function Testimonials() {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -177,10 +196,7 @@ export function Testimonials() {
                           <div className="flex items-center justify-center md:justify-start space-x-2 mt-2">
                             <Calendar className="h-4 w-4 text-muted-foreground" />
                             <span className="text-sm text-muted-foreground">
-                              {new Date(testimonials[currentIndex].date).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'long'
-                              })}
+                              {formatMonthYear(testimonials[currentIndex].date)}
                             </span>
                           </div>
                         </div>
@@ -287,7 +303,7 @@ export function Testimonials() {
                           {testimonial.project}
                         </Badge>
                         <span className="text-xs text-muted-foreground">
-                          {new Date(testimonial.date).toLocaleDateString()}
+                          {formatDate(testimonial.date)}
                         </span>
                       </div>
                     )}

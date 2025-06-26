@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Download, Award, Users, Coffee, Code2 } from 'lucide-react';
+import { trackCVDownload } from '@/lib/analytics';
 
 const stats = [
   { icon: Code2, label: 'Years Experience', value: '5+' },
@@ -120,9 +121,12 @@ export function About() {
               >
                 <a 
                   href="/Thejan Bandara.pdf" 
-                  download="Thejan Bandara.pdf"
+                  download="Thejan_Bandara_CV_Software_Engineer.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Download CV of Vihinsa Thejan Bandara - Software Engineer and CEO"
+                  title="Download Professional CV - Software Engineer & CEO Portfolio"
+                  onClick={() => trackCVDownload()}
                 >
                   <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
                   Download CV

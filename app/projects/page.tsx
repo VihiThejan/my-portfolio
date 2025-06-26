@@ -24,6 +24,7 @@ import {
 import { projects } from '@/lib/data';
 import { FilterOptions } from '@/types';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const filterOptions = {
   techStack: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'MongoDB', 'PostgreSQL', 'AWS', 'Docker'],

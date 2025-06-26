@@ -20,6 +20,15 @@ import {
   Code
 } from 'lucide-react';
 
+// Utility function for consistent date formatting
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
+};
+
 const currentProjects = [
   {
     id: '1',
@@ -197,7 +206,7 @@ export function CurrentProjects() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div className="flex items-center space-x-2 text-muted-foreground">
                       <Calendar className="h-4 w-4" />
-                      <span>Due: {new Date(project.dueDate).toLocaleDateString()}</span>
+                      <span>Due: {formatDate(project.dueDate)}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-muted-foreground">
                       <Users className="h-4 w-4" />

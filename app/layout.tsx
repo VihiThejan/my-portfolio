@@ -12,35 +12,88 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Thejan Bandara | CEO & Software Engineer',
-  description: 'Passionate software engineer and entrepreneur leading Vihi IT Solutions. Specializing in creating innovative digital solutions that transform businesses.',
-  keywords: 'Thejan Bandara, Software Engineer, CEO, Vihi IT Solutions, Full Stack Developer, React, Next.js, Node.js',
-  authors: [{ name: 'Thejan Bandara' }],
-  creator: 'Thejan Bandara',
+  metadataBase: new URL('https://vihinsabandara.vercel.app'),
+  title: {
+    default: 'Vihinsa Thejan Bandara | CEO & Full-Stack Software Engineer Portfolio',
+    template: '%s | Vihinsa Thejan Bandara'
+  },
+  description: 'Experienced software engineer and CEO of Vihi IT Solutions with 5+ years in full-stack development. Specializing in React, Next.js, Node.js, and innovative digital solutions that transform businesses.',
+  keywords: [
+    'Vihinsa Thejan Bandara',
+    'Thejan Bandara',
+    'Software Engineer',
+    'CEO',
+    'Vihi IT Solutions',
+    'Full Stack Developer',
+    'React Developer',
+    'Next.js Developer',
+    'Node.js Developer',
+    'TypeScript',
+    'JavaScript',
+    'Web Development',
+    'Mobile Development',
+    'Cloud Solutions',
+    'AWS',
+    'Portfolio',
+    'Software Consultant',
+    'Tech Entrepreneur',
+    'Frontend Developer',
+    'Backend Developer'
+  ],
+  authors: [{ name: 'Vihinsa Thejan Bandara', url: 'https://vihinsabandara.vercel.app' }],
+  creator: 'Vihinsa Thejan Bandara',
+  publisher: 'Vihinsa Thejan Bandara',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  category: 'technology',
+  classification: 'software development portfolio',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://https://vihinsabandara.vercel.app',
-    title: 'Thejan Bandara | CEO & Software Engineer',
-    description: 'Passionate software engineer and entrepreneur leading Vihi IT Solutions. Specializing in creating innovative digital solutions that transform businesses.',
-    siteName: 'Thejan Bandara Portfolio',
+    url: 'https://vihinsabandara.vercel.app',
+    title: 'Vihinsa Thejan Bandara | CEO & Full-Stack Software Engineer',
+    description: 'Experienced software engineer and CEO with 5+ years in full-stack development. Expert in React, Next.js, Node.js, and innovative digital solutions.',
+    siteName: 'Vihinsa Thejan Bandara Portfolio',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Vihinsa Thejan Bandara - Software Engineer & CEO Portfolio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Thejan Bandara | CEO & Software Engineer',
-    description: 'Passionate software engineer and entrepreneur leading Vihi IT Solutions.',
+    title: 'Vihinsa Thejan Bandara | CEO & Software Engineer',
+    description: 'Experienced software engineer and CEO specializing in full-stack development and innovative digital solutions.',
     creator: '@vihinsabandara',
+    site: '@vihinsabandara',
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: true,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+    yahoo: 'your-yahoo-verification-code',
+  },
+  alternates: {
+    canonical: 'https://vihinsabandara.vercel.app',
   },
 };
 
@@ -51,6 +104,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
+      </head>
       <body className={`${inter.variable} antialiased`}>
         <ThemeProvider
           attribute="class"

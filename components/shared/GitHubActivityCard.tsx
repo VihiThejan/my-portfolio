@@ -7,6 +7,15 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Github, ExternalLink, Activity, Calendar, Loader2 } from 'lucide-react';
 
+// Utility function for consistent date formatting
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
+};
+
 interface ContributionDay {
   date: string;
   count: number;
@@ -263,7 +272,7 @@ export function GitHubActivityCard({ username, className = '' }: GitHubActivityP
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                   className={`w-4 h-4 rounded-sm ${getLevelColor(day.level)} tooltip`}
-                  title={`${day.count} contributions on ${new Date(day.date).toLocaleDateString()}`}
+                  title={`${day.count} contributions on ${formatDate(day.date)}`}
                 />
               ))}
             </div>

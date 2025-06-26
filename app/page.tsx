@@ -8,10 +8,23 @@ import { TechStack } from '@/components/sections/TechStack';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Footer } from '@/components/sections/Footer';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { generatePersonSchema, generateWebsiteSchema, generateOrganizationSchema } from '@/lib/structured-data';
 
 export default function Home() {
+  const personSchema = generatePersonSchema();
+  const websiteSchema = generateWebsiteSchema();
+  const organizationSchema = generateOrganizationSchema();
+
   return (
     <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([personSchema, websiteSchema, organizationSchema])
+        }}
+      />
+      
       <Hero />
       <About />
       <Startup />
