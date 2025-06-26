@@ -88,9 +88,9 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    yahoo: 'your-yahoo-verification-code',
+    google: 'YOgdGNsfvhTwMoz2F8APkkH0uoVD1kDQgz-0lxTbnwc',
+    yandex: '3c6112077d7fc860',
+    yahoo: '3ADE85CFE3F6F4DB1563E9A01C9698E4',
   },
   alternates: {
     canonical: 'https://vihinsabandara.vercel.app',
