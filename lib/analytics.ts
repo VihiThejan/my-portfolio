@@ -58,6 +58,23 @@ export const trackExternalLink = (url: string, label: string) => {
   });
 };
 
+export const trackIndexNowSubmission = (url: string, success: boolean) => {
+  event({
+    action: 'indexnow_submission',
+    category: 'SEO',
+    label: `URL: ${url}, Success: ${success}`,
+    value: success ? 1 : 0,
+  });
+};
+
+export const trackSEOEvent = (eventType: string, details: string) => {
+  event({
+    action: eventType,
+    category: 'SEO',
+    label: details,
+  });
+};
+
 // Declare gtag function type
 declare global {
   interface Window {

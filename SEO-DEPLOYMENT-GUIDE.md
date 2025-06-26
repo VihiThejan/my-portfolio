@@ -60,14 +60,15 @@
 ### **Before Deploying**
 1. ✅ Add your actual Google Analytics ID to environment variables
 2. ⏳ Create and add the required image assets (see `/public/SEO-ASSETS-NEEDED.md`)
-3. ⏳ Replace placeholder verification codes in `layout.tsx`
+3. ✅ Verification codes configured (Google, Bing, Yandex)
 4. ✅ Ensure all social media URLs are correct
+5. ✅ Bing verification file ready at `/BingSiteAuth.xml`
 
 ### **After Deployment**
 1. ⏳ Submit sitemap to Google Search Console
 2. ⏳ Verify your website in Google Search Console
 3. ⏳ Set up Google Analytics property
-4. ⏳ Submit to Bing Webmaster Tools
+4. ✅ Submit to Bing Webmaster Tools (BingSiteAuth.xml ready)
 5. ⏳ Monitor Core Web Vitals and performance
 
 ### **Ongoing Optimization**
