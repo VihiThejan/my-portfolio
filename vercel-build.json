@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build": "prisma generate && prisma db push && next build"
+  },
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { projects } from '@/lib/data';
 import { FilterOptions } from '@/types';
+import { useProjects } from '@/hooks/use-portfolio-data';
 
 const filterOptions = {
   techStack: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'MongoDB', 'PostgreSQL', 'AWS', 'Docker'],
@@ -38,6 +39,8 @@ export function Projects() {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const { projects, isLoading, error } = useProjects();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
@@ -171,6 +174,29 @@ export function Projects() {
           </motion.p>
         </motion.div>
 
+        {/* Loading State */}
+        {isLoading && (
+          <div className="text-center py-12">
+            <div className="inline-flex items-center space-x-2">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+              <span className="text-muted-foreground">Loading projects...</span>
+            </div>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="text-center py-12">
+            <div className="text-red-600 mb-4">
+              <X className="h-8 w-8 mx-auto mb-2" />
+              <p>Failed to load projects: {error}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Main Content - Only show when not loading and no error */}
+        {!isLoading && !error && (
+          <>
         {/* Search and Filter Controls */}
         <motion.div
           variants={itemVariants}
@@ -540,6 +566,8 @@ export function Projects() {
             </a>
           </Button>
         </motion.div>
+        </>
+        )}
       </div>
     </section>
   );

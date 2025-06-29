@@ -1,0 +1,167 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Project {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  longDescription String?
+  image           String
+  images          String   @default("[]") // JSON array of image URLs
+  tags            String   @default("[]") // JSON array of tags
+  techStack       String   @default("[]") // JSON array of tech stack
+  languages       String   @default("[]") // JSON array of languages
+  status          String   @default("completed") // completed, in-progress, maintained, archived
+  difficulty      String   @default("intermediate") // beginner, intermediate, advanced, expert
+  category        String   @default("fullstack") // frontend, backend, fullstack, mobile, ai-ml, devops
+  liveUrl         String?
+  githubUrl       String?
+  featured        Boolean  @default(false)
+  year            Int
+  duration        String?
+  teamSize        Int?
+  role            String?
+  challenges      String   @default("[]") // JSON array of challenges
+  solutions       String   @default("[]") // JSON array of solutions
+  results         String   @default("[]") // JSON array of results
+  metrics         String   @default("[]") // JSON string of metrics
+  published       Boolean  @default(true)
+  order           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model Skill {
+  id                String   @id @default(cuid())
+  name              String   @unique
+  category          String   // frontend, backend, database, tools, cloud, mobile, other
+  level             Int      @default(50) // 1-100
+  yearsOfExperience Int      @default(1)
+  icon              String?
+  description       String?
+  published         Boolean  @default(true)
+  order             Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("skills")
+}
+
+model TechStack {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  category    String   // language, framework, library, database, tool, platform
+  logo        String
+  description String
+  useCase     String
+  yearsUsed   Int      @default(1)
+  lastUsed    String
+  proficiency Int      @default(50) // 1-100
+  published   Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("tech_stack")
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  company   String
+  content   String
+  image     String?
+  rating    Int      @default(5) // 1-5
+  published Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("testimonials")
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  company     String
+  position    String
+  startDate   DateTime
+  endDate     DateTime?
+  current     Boolean  @default(false)
+  description String
+  achievements String  @default("[]") // JSON array of achievements
+  technologies String  @default("[]") // JSON array of technologies used
+  location    String?
+  companyUrl  String?
+  published   Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("experiences")
+}
+
+model Education {
+  id          String   @id @default(cuid())
+  institution String
+  degree      String
+  field       String
+  startDate   DateTime
+  endDate     DateTime?
+  current     Boolean  @default(false)
+  description String?
+  gpa         String?
+  location    String?
+  published   Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("education")
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  replied   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contact_messages")
+}
+
+model SiteSettings {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+  type  String @default("string") // string, number, boolean, json
+
+  @@map("site_settings")
+}
