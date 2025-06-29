@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { getAuthFromRequest } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 interface Params {
   id: string;
 }
