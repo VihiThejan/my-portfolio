@@ -16,6 +16,8 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'gradient-brand': 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
+        'gradient-golden': 'linear-gradient(135deg, #FFD700, #D4AF37, #FF8C00)',
+        'gradient-golden-subtle': 'linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(212, 175, 55, 0.1), rgba(255, 140, 0, 0.1))',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -48,6 +50,24 @@ const config: Config = {
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
+        },
+        // Golden Vihi Brand Colors
+        golden: {
+          50: '#FFF9E6',
+          100: '#FFF3CC',
+          200: '#FFE799',
+          300: '#FFDB66',
+          400: '#FFCF33',
+          500: '#FFD700', // Light gold
+          600: '#D4AF37', // Rich gold
+          700: '#B8860B', // Dark goldenrod
+          800: '#9A7209',
+          900: '#7C5E08',
+        },
+        amber: {
+          400: '#FBBF24',
+          500: '#F59E0B',
+          600: '#FF8C00', // Vihi accent
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -115,8 +135,11 @@ const config: Config = {
       },
       boxShadow: {
         'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-        'glow': '0 0 20px rgba(184, 92, 71, 0.3)',
-        'glow-lg': '0 0 40px rgba(184, 92, 71, 0.4)',
+        'glow': '0 0 20px hsl(var(--primary) / 0.3)',
+        'glow-lg': '0 0 40px hsl(var(--primary) / 0.4)',
+        'glow-golden': '0 0 20px rgba(212, 175, 55, 0.4)',
+        'glow-golden-lg': '0 0 40px rgba(212, 175, 55, 0.6)',
+        'glow-amber': '0 0 20px rgba(255, 140, 0, 0.4)',
       },
     },
   },

@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/IT21266300', label: 'GitHub' },
+  { icon: Github, href: 'https://github.com/VihiThejan', label: 'GitHub' },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/vihinsa-thejan-bandara', label: 'LinkedIn' },
   { icon: Mail, href: 'mailto:vihinsabandara@gmail.com', label: 'Email' },
   { icon: Globe, href: 'https://vihiitsolutions.com', label: 'Company Website' },

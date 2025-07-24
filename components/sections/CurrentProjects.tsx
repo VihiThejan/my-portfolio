@@ -306,7 +306,7 @@ export function CurrentProjects() {
           animate={inView ? 'visible' : 'hidden'}
           className="mt-16 flex justify-center"
         >
-          <GitHubActivityCard username="IT21266300" className="max-w-md" />
+          <GitHubActivityCard username="VihiThejan" className="max-w-md" />
         </motion.div>
       </div>
     </section>

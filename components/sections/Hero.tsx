@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail, ExternalLink, Sparkles, Code2, Briefcase } from 'lucide-react';
+import { SparkleEffect } from '@/components/ui/cursor-effects';
 
 const roles = [
   { text: 'CEO', icon: Briefcase },
@@ -32,13 +33,13 @@ export function Hero() {
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Animated Mesh Background */}
-      <div className="absolute inset-0 gradient-mesh">
+      {/* Animated Golden Mesh Background */}
+      <div className="absolute inset-0 golden-mesh">
         <motion.div
           style={{ y }}
           className="absolute inset-0"
         >
-          {/* Floating Orbs */}
+          {/* Floating Orbs - Golden Theme */}
           <motion.div
             animate={{
               x: [0, 100, 0],
@@ -50,7 +51,7 @@ export function Hero() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/4 w-64 h-64 bg-golden-500/20 rounded-full blur-3xl"
           />
           <motion.div
             animate={{
@@ -63,7 +64,7 @@ export function Hero() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-600/20 rounded-full blur-3xl"
           />
           <motion.div
             animate={{
@@ -76,7 +77,7 @@ export function Hero() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full blur-3xl"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-golden-500/10 to-amber-600/10 rounded-full blur-3xl"
           />
         </motion.div>
 
@@ -91,7 +92,7 @@ export function Hero() {
       >
         
 
-        {/* Name with Animation */}
+        {/* Name with Animation and Sparkles */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -99,13 +100,15 @@ export function Hero() {
         >
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6">
             <span className="block text-foreground">Hi, I&apos;m</span>
-            <motion.span 
-              className="gradient-brand-text inline-block mt-2"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              Vihinsa Thejan Bandara
-            </motion.span>
+            <SparkleEffect intensity="medium">
+              <motion.span 
+                className="gradient-brand-text inline-block mt-2"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                Vihinsa Thejan Bandara
+              </motion.span>
+            </SparkleEffect>
           </h1>
         </motion.div>
 
@@ -155,28 +158,30 @@ export function Hero() {
           />
         </motion.div>
 
-        {/* CTA Buttons with Better Styling */}
+        {/* CTA Buttons with Better Styling and Sparkles */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
         >
-          <Button
-            size="lg"
-            onClick={() => scrollToSection('projects')}
-            className="gradient-brand hover:shadow-glow-lg hover:scale-105 transition-all duration-300 group px-8 py-6 text-lg"
-          >
-            <Sparkles className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-            Explore My Work
-            <motion.span
-              className="ml-2"
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1, repeat: Infinity }}
+          <SparkleEffect intensity="low">
+            <Button
+              size="lg"
+              onClick={() => scrollToSection('projects')}
+              className="gradient-brand hover:shadow-glow-lg hover:scale-105 transition-all duration-300 group px-8 py-6 text-lg"
             >
-              →
-            </motion.span>
-          </Button>
+              <Sparkles className="mr-2 h-5 w-5 group-hover:animate-pulse" />
+              Explore My Work
+              <motion.span
+                className="ml-2"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                →
+              </motion.span>
+            </Button>
+          </SparkleEffect>
           <Button
             variant="outline"
             size="lg"
@@ -196,9 +201,9 @@ export function Hero() {
           className="flex justify-center items-center gap-6"
         >
           {[
-            { icon: Github, href: 'https://github.com/IT21266300', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
+            { icon: Github, href: 'https://github.com/VihiThejan', label: 'GitHub', color: 'hover:text-golden-600 dark:hover:text-golden-400' },
             { icon: Linkedin, href: 'https://www.linkedin.com/in/vihinsa-thejan-bandara', label: 'LinkedIn', color: 'hover:text-blue-600' },
-            { icon: Mail, href: 'mailto:vihinsabandara@gmail.com', label: 'Email', color: 'hover:text-primary' },
+            { icon: Mail, href: 'mailto:vihinsabandara@gmail.com', label: 'Email', color: 'hover:text-amber-600' },
           ].map((social, index) => (
             <motion.a
               key={social.label}
@@ -247,9 +252,9 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Corner Decoration */}
-      <div className="absolute top-0 right-0 w-40 h-40 gradient-brand opacity-10 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-40 h-40 gradient-brand opacity-10 blur-3xl" />
+      {/* Corner Decoration - Golden Theme */}
+      <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-golden opacity-10 blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-golden opacity-10 blur-3xl" />
     </section>
   );
 }

@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { SparkleEffect } from '@/components/ui/cursor-effects';
 import { 
   Moon, 
   Sun, 
@@ -83,18 +84,33 @@ export function Navigation() {
         }`}
       >
         <nav className="container mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo - Vihi IT Solutions Golden Branding with Sparkles */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-3"
           >
-            <div className="w-8 h-8 bg-gradient-brand rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">TB</span>
+            <SparkleEffect intensity="low">
+              <div className="relative group">
+                <div className="w-10 h-10 bg-gradient-golden rounded-lg flex items-center justify-center shadow-glow-golden relative overflow-hidden">
+                  {/* You can replace this with the actual Vihi logo SVG */}
+                  <div className="text-black font-bold text-sm tracking-wider">
+                    VI
+                  </div>
+                  {/* Subtle animation overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -skew-x-12"></div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-golden rounded-lg opacity-30 blur animate-pulse"></div>
+              </div>
+            </SparkleEffect>
+            <div className="flex flex-col">
+              <span className="font-bold text-lg gradient-brand-text leading-tight">
+                Vihinsa Bandara
+              </span>
+              <span className="text-xs text-muted-foreground font-medium">
+                CEO, Vihi IT Solutions
+              </span>
             </div>
-            <span className="font-bold text-lg gradient-text">
-              Vihinsa Thejan Bandara
-            </span>
           </motion.div>
 
           {/* Desktop Navigation */}
