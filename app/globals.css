@@ -39,14 +39,30 @@
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08);
   }
 
-  /* Custom cursor styles - Selective application */
-  body {
-    cursor: none !important;
+  /* Custom cursor styles - Only on non-touch devices */
+  @media (hover: hover) and (pointer: fine) {
+    body {
+      cursor: none !important;
+    }
   }
   
-  /* Keep default cursor on specific elements */
+  /* Keep default cursor on specific elements and touch devices */
   input, textarea, select, [contenteditable] {
     cursor: text !important;
+  }
+  
+  /* Ensure proper touch targets on mobile */
+  @media (max-width: 768px) {
+    button, a, [role="button"] {
+      min-height: 44px; /* Apple's recommended touch target size */
+      min-width: 44px;
+    }
+    
+    /* Better touch feedback */
+    button:active, a:active, [role="button"]:active {
+      transform: scale(0.98);
+      transition: transform 0.1s ease;
+    }
   }
 
   /* Responsive laptop optimization */

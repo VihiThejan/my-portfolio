@@ -13,15 +13,40 @@ interface Star {
 
 export function CursorEffects() {
   const [stars, setStars] = useState<Star[]>([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    // Detect if device supports touch
+    const checkTouchDevice = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    
+    checkTouchDevice();
+    window.addEventListener('resize', checkTouchDevice);
+
     let starId = 0;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const handlePointerMove = (e: MouseEvent | TouchEvent) => {
+      let clientX: number, clientY: number;
+      
+      if (e.type.startsWith('touch')) {
+        const touchEvent = e as TouchEvent;
+        if (touchEvent.touches.length > 0) {
+          clientX = touchEvent.touches[0].clientX;
+          clientY = touchEvent.touches[0].clientY;
+        } else {
+          return;
+        }
+      } else {
+        const mouseEvent = e as MouseEvent;
+        clientX = mouseEvent.clientX;
+        clientY = mouseEvent.clientY;
+      }
+
+      setCursorPosition({ x: clientX, y: clientY });
 
       // Check if hovering over interactive elements
       const target = e.target as HTMLElement;
@@ -32,8 +57,8 @@ export function CursorEffects() {
       if (Math.random() > 0.7) { // Reduce frequency
         const newStar: Star = {
           id: starId++,
-          x: e.clientX + (Math.random() - 0.5) * 20, // Add some randomness
-          y: e.clientY + (Math.random() - 0.5) * 20,
+          x: clientX + (Math.random() - 0.5) * 20, // Add some randomness
+          y: clientY + (Math.random() - 0.5) * 20,
           size: Math.random() * 6 + 3, // 3-9px
           delay: Math.random() * 0.2,
         };
@@ -51,14 +76,31 @@ export function CursorEffects() {
       }
     };
 
-    const handleMouseDown = () => {
+    const handlePointerDown = (e: MouseEvent | TouchEvent) => {
       setIsClicking(true);
-      // Create burst of stars on click
+      
+      let clientX: number, clientY: number;
+      
+      if (e.type.startsWith('touch')) {
+        const touchEvent = e as TouchEvent;
+        if (touchEvent.touches.length > 0) {
+          clientX = touchEvent.touches[0].clientX;
+          clientY = touchEvent.touches[0].clientY;
+        } else {
+          return;
+        }
+      } else {
+        const mouseEvent = e as MouseEvent;
+        clientX = mouseEvent.clientX;
+        clientY = mouseEvent.clientY;
+      }
+      
+      // Create burst of stars on click/touch
       for (let i = 0; i < 5; i++) {
         const burstStar: Star = {
           id: starId++,
-          x: mousePosition.x + (Math.random() - 0.5) * 40,
-          y: mousePosition.y + (Math.random() - 0.5) * 40,
+          x: clientX + (Math.random() - 0.5) * 40,
+          y: clientY + (Math.random() - 0.5) * 40,
           size: Math.random() * 8 + 4,
           delay: i * 0.05,
         };
@@ -71,72 +113,90 @@ export function CursorEffects() {
       }
     };
 
-    const handleMouseUp = () => {
+    const handlePointerUp = () => {
       setIsClicking(false);
     };
 
-    // Throttle mouse move events more aggressively
+    // Throttle pointer move events more aggressively
     let lastTime = 0;
-    const throttledMouseMove = (e: MouseEvent) => {
+    const throttledPointerMove = (e: MouseEvent | TouchEvent) => {
       const now = Date.now();
       if (now - lastTime > 100) { // Update every 100ms
-        handleMouseMove(e);
+        handlePointerMove(e);
         lastTime = now;
       }
     };
 
-    document.addEventListener('mousemove', throttledMouseMove);
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mouseup', handleMouseUp);
+    // Add event listeners for both mouse and touch
+    if (!isTouchDevice) {
+      // Mouse events for desktop
+      document.addEventListener('mousemove', throttledPointerMove as any);
+      document.addEventListener('mousedown', handlePointerDown as any);
+      document.addEventListener('mouseup', handlePointerUp);
+    } else {
+      // Touch events for mobile
+      document.addEventListener('touchmove', throttledPointerMove as any, { passive: true });
+      document.addEventListener('touchstart', handlePointerDown as any, { passive: true });
+      document.addEventListener('touchend', handlePointerUp, { passive: true });
+    }
 
     return () => {
-      document.removeEventListener('mousemove', throttledMouseMove);
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mouseup', handleMouseUp);
+      if (!isTouchDevice) {
+        document.removeEventListener('mousemove', throttledPointerMove as any);
+        document.removeEventListener('mousedown', handlePointerDown as any);
+        document.removeEventListener('mouseup', handlePointerUp);
+      } else {
+        document.removeEventListener('touchmove', throttledPointerMove as any);
+        document.removeEventListener('touchstart', handlePointerDown as any);
+        document.removeEventListener('touchend', handlePointerUp);
+      }
+      window.removeEventListener('resize', checkTouchDevice);
     };
-  }, [mousePosition]);
+  }, [cursorPosition, isTouchDevice]);
 
   return (
     <>
-      {/* Custom Cursor - Enhanced for interactivity */}
-      <motion.div
-        className="fixed pointer-events-none z-[9999]"
-        style={{
-          left: mousePosition.x - (isHovering ? 12 : 8),
-          top: mousePosition.y - (isHovering ? 12 : 8),
-        }}
-        animate={{
-          scale: isClicking ? [1, 0.8, 1.2] : isHovering ? [1, 1.3, 1.1] : [1, 1.1, 1],
-        }}
-        transition={{
-          duration: isClicking ? 0.1 : 0.3,
-          ease: "easeOut"
-        }}
-      >
-        <div 
-          className={`rounded-full transition-all duration-300 ${
-            isClicking
-              ? 'w-8 h-8 bg-gradient-golden opacity-100 shadow-glow-golden-lg animate-pulse'
-              : isHovering 
-                ? 'w-6 h-6 bg-gradient-golden opacity-90 shadow-glow-golden-lg' 
-                : 'w-4 h-4 bg-golden-400 opacity-70 shadow-glow-golden'
-          }`} 
-        />
-        {(isHovering || isClicking) && (
-          <motion.div
-            className="absolute inset-0 rounded-full bg-gradient-golden opacity-50"
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.5, 0.2, 0.5],
-            }}
-            transition={{
-              duration: isClicking ? 0.5 : 1,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+      {/* Custom Cursor - Enhanced for interactivity and mobile support */}
+      {!isTouchDevice && (
+        <motion.div
+          className="fixed pointer-events-none z-[9999]"
+          style={{
+            left: cursorPosition.x - (isHovering ? 12 : 8),
+            top: cursorPosition.y - (isHovering ? 12 : 8),
+          }}
+          animate={{
+            scale: isClicking ? [1, 0.8, 1.2] : isHovering ? [1, 1.3, 1.1] : [1, 1.1, 1],
+          }}
+          transition={{
+            duration: isClicking ? 0.1 : 0.3,
+            ease: "easeOut"
+          }}
+        >
+          <div 
+            className={`rounded-full transition-all duration-300 ${
+              isClicking
+                ? 'w-8 h-8 bg-gradient-golden opacity-100 shadow-glow-golden-lg animate-pulse'
+                : isHovering 
+                  ? 'w-6 h-6 bg-gradient-golden opacity-90 shadow-glow-golden-lg' 
+                  : 'w-4 h-4 bg-golden-400 opacity-70 shadow-glow-golden'
+            }`} 
           />
-        )}
-      </motion.div>
+          {(isHovering || isClicking) && (
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-golden opacity-50"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 0.2, 0.5],
+              }}
+              transition={{
+                duration: isClicking ? 0.5 : 1,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          )}
+        </motion.div>
+      )}
 
       {/* Trailing Stars */}
       <AnimatePresence>
