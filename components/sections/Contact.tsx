@@ -95,7 +95,7 @@ const socialLinks = [
   {
     icon: Twitter,
     label: 'Twitter',
-    href: 'https://twitter.com/vihinsathejan',
+    href: 'https://twitter.com/vihinsabandara',
     color: 'hover:text-blue-500'
   }
 ];

@@ -122,7 +122,7 @@ const contactInfo = [
 Your social links are already configured:
 - LinkedIn: linkedin.com/in/vihinsa-thejan
 - GitHub: github.com/VihiThejan
-- Twitter: twitter.com/vihinsathejan
+- Twitter: twitter.com/vihinsabandara
 
 ## 🔥 Testing
 
