@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { IconWrapper } from '@/components/ui/icon-wrapper';
-import { SectionBackground } from '@/components/ui/section-background';
+import { StarFallingAnimation } from '@/components/ui/star-falling-animation';
 import { 
   Brain, 
   Code, 
@@ -114,24 +114,24 @@ export function Skills() {
   };
 
   return (
-    <section id="skills" className="py-20 px-6 bg-muted/30 relative">
-      <SectionBackground pattern="lines" variant="medium" />
+    <section id="skills" className="py-12 md:py-20 px-4 md:px-6 bg-muted/30 relative">
+      <StarFallingAnimation intensity="medium" color="golden" />
       <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 mb-6">
-            <IconWrapper Icon={Brain} className="h-8 w-8 text-primary" />
-            <span className="text-primary font-semibold uppercase tracking-wider text-sm">Expertise</span>
+          <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 mb-4 md:mb-6">
+            <IconWrapper Icon={Brain} className="h-6 w-6 md:h-8 md:w-8 text-primary" />
+            <span className="text-primary font-semibold uppercase tracking-wider text-xs md:text-sm">Expertise</span>
           </motion.div>
           
           <motion.h2 
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 md:mb-6"
           >
             Skills & <span className="gradient-text">Expertise</span>
           </motion.h2>
@@ -151,17 +151,17 @@ export function Skills() {
           animate={inView ? 'visible' : 'hidden'}
         >
           <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-3 mb-8">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="categories">By Category</TabsTrigger>
-              <TabsTrigger value="timeline">Experience</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-3 mb-6 md:mb-8">
+              <TabsTrigger value="overview" className="text-sm">Overview</TabsTrigger>
+              <TabsTrigger value="categories" className="text-sm">By Category</TabsTrigger>
+              <TabsTrigger value="timeline" className="text-sm">Experience</TabsTrigger>
             </TabsList>
 
             {/* Overview Tab */}
-            <TabsContent value="overview" className="space-y-8">
+            <TabsContent value="overview" className="space-y-6 md:space-y-8">
               <motion.div
                 variants={itemVariants}
-                className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
               >
                 {filteredSkills.map((skill, index) => {
                   const skillLevel = getSkillLevel(skill.level);
@@ -176,10 +176,10 @@ export function Skills() {
                       className="group"
                     >
                       <Card className="h-full hover:shadow-glow transition-all duration-300 border-border/50 hover:border-primary/30">
-                        <CardContent className="p-6">
-                          <div className="flex items-center space-x-3 mb-4">
-                            <div className={`p-2 rounded-lg bg-gradient-to-br ${categoryColors[skill.category]}`}>
-                              <IconWrapper Icon={IconComponent} className="h-5 w-5 text-primary" />
+                        <CardContent className="p-4 md:p-6">
+                          <div className="flex items-center space-x-3 mb-3 md:mb-4">
+                            <div className={`p-1.5 md:p-2 rounded-lg bg-gradient-to-br ${categoryColors[skill.category]}`}>
+                              <IconWrapper Icon={IconComponent} className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <h3 className="font-semibold text-sm truncate">{skill.name}</h3>
@@ -189,7 +189,7 @@ export function Skills() {
                             </div>
                           </div>
 
-                          <div className="space-y-3">
+                          <div className="space-y-2 md:space-y-3">
                             <div className="flex justify-between items-center">
                               <span className="text-xs text-muted-foreground">Proficiency</span>
                               <Badge className={`text-xs ${skillLevel.color} bg-transparent border-current`}>
@@ -197,7 +197,7 @@ export function Skills() {
                               </Badge>
                             </div>
                             
-                            <Progress value={skill.level} className="h-2" />
+                            <Progress value={skill.level} className="h-1.5 md:h-2" />
                             
                             <div className="flex justify-between text-xs text-muted-foreground">
                               <span>{skill.level}%</span>
@@ -219,7 +219,7 @@ export function Skills() {
             </TabsContent>
 
             {/* Categories Tab */}
-            <TabsContent value="categories" className="space-y-8">
+            <TabsContent value="categories" className="space-y-6 md:space-y-8">
               {Object.entries(skillsByCategory).map(([category, categorySkills]) => {
                 const IconComponent = categoryIcons[category as keyof typeof categoryIcons] || Brain;
                 
@@ -227,27 +227,27 @@ export function Skills() {
                   <motion.div
                     key={category}
                     variants={itemVariants}
-                    className="space-y-4"
+                    className="space-y-3 md:space-y-4"
                   >
-                    <div className="flex items-center space-x-3 mb-6">
-                      <div className={`p-3 rounded-xl bg-gradient-to-br ${categoryColors[category as keyof typeof categoryColors]}`}>
-                        <IconWrapper Icon={IconComponent} className="h-6 w-6 text-primary" />
+                    <div className="flex items-center space-x-3 mb-4 md:mb-6">
+                      <div className={`p-2 md:p-3 rounded-xl bg-gradient-to-br ${categoryColors[category as keyof typeof categoryColors]}`}>
+                        <IconWrapper Icon={IconComponent} className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold capitalize">
+                        <h3 className="text-lg md:text-xl font-bold capitalize">
                           {category.replace('-', ' ')} Development
                         </h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-xs md:text-sm text-muted-foreground">
                           {categorySkills.length} skills • Avg. {Math.round(categorySkills.reduce((acc, skill) => acc + skill.level, 0) / categorySkills.length)}% proficiency
                         </p>
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
                       {categorySkills.map((skill) => (
-                        <Card key={skill.id} className="p-4 hover:shadow-glow transition-all duration-300 border-border/50 hover:border-primary/30">
+                        <Card key={skill.id} className="p-3 md:p-4 hover:shadow-glow transition-all duration-300 border-border/50 hover:border-primary/30">
                           <div className="flex items-center justify-between mb-2">
-                            <h4 className="font-medium">{skill.name}</h4>
+                            <h4 className="font-medium text-sm md:text-base">{skill.name}</h4>
                             <Badge variant="secondary" className="text-xs">
                               {skill.level}%
                             </Badge>
@@ -268,36 +268,36 @@ export function Skills() {
             </TabsContent>
 
             {/* Timeline Tab */}
-            <TabsContent value="timeline" className="space-y-8">
-              <motion.div variants={itemVariants} className="grid lg:grid-cols-3 gap-8">
+            <TabsContent value="timeline" className="space-y-6 md:space-y-8">
+              <motion.div variants={itemVariants} className="grid lg:grid-cols-3 gap-6 md:gap-8">
                 {/* Experience Summary */}
-                <div className="lg:col-span-1 space-y-6">
-                  <Card className="p-6 border-border/50">
-                    <div className="flex items-center space-x-3 mb-4">
-                      <div className="p-3 bg-primary/10 rounded-full">
-                        <IconWrapper Icon={Award} className="h-6 w-6 text-primary" />
+                <div className="lg:col-span-1 space-y-4 md:space-y-6">
+                  <Card className="p-4 md:p-6 border-border/50">
+                    <div className="flex items-center space-x-3 mb-3 md:mb-4">
+                      <div className="p-2 md:p-3 bg-primary/10 rounded-full">
+                        <IconWrapper Icon={Award} className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-bold">Experience Level</h3>
-                        <p className="text-sm text-muted-foreground">Overall proficiency</p>
+                        <h3 className="font-bold text-sm md:text-base">Experience Level</h3>
+                        <p className="text-xs md:text-sm text-muted-foreground">Overall proficiency</p>
                       </div>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-3 md:space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm">Expert Level</span>
-                        <span className="text-sm font-medium">
+                        <span className="text-xs md:text-sm">Expert Level</span>
+                        <span className="text-xs md:text-sm font-medium">
                           {skills.filter(s => s.level >= 90).length} skills
                         </span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm">Advanced Level</span>
-                        <span className="text-sm font-medium">
+                        <span className="text-xs md:text-sm">Advanced Level</span>
+                        <span className="text-xs md:text-sm font-medium">
                           {skills.filter(s => s.level >= 80 && s.level < 90).length} skills
                         </span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm">Intermediate Level</span>
-                        <span className="text-sm font-medium">
+                        <span className="text-xs md:text-sm">Intermediate Level</span>
+                        <span className="text-xs md:text-sm font-medium">
                           {skills.filter(s => s.level >= 70 && s.level < 80).length} skills
                         </span>
                       </div>
