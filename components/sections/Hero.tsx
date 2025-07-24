@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail, ExternalLink, Sparkles, Code2, Briefcase } from 'lucide-react';
 import { SparkleEffect } from '@/components/ui/cursor-effects';
+import { ParallaxBackground } from '@/components/ui/parallax-background';
 
 const roles = [
   { text: 'CEO', icon: Briefcase },
@@ -33,6 +34,9 @@ export function Hero() {
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+      {/* Parallax Background Effects */}
+      <ParallaxBackground />
+      
       {/* Animated Golden Mesh Background */}
       <div className="absolute inset-0 golden-mesh">
         <motion.div

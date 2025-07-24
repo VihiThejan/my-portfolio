@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/shared/ThemeProvider';
 import { Navigation } from '@/components/shared/Navigation';
 import { Toaster } from '@/components/ui/sonner';
 import { CursorEffects } from '@/components/ui/cursor-effects';
+import { BackgroundEffects } from '@/components/ui/background-effects';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -120,9 +121,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
+          <BackgroundEffects />
           <CursorEffects />
           <Navigation />
-          <main className="min-h-screen">
+          <main className="min-h-screen relative z-10">
             {children}
           </main>
           <Toaster />

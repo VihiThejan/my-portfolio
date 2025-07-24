@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { SectionBackground } from '@/components/ui/section-background';
 import { Download, Award, Users, Coffee, Code2 } from 'lucide-react';
 import { trackCVDownload } from '@/lib/analytics';
 
@@ -42,8 +43,9 @@ export function About() {
   };
 
   return (
-    <section id="about" className="py-20 px-6 bg-muted/30">
-      <div className="container mx-auto max-w-6xl">
+    <section id="about" className="py-20 px-6 bg-muted/30 relative">
+      <SectionBackground pattern="geometric" variant="subtle" />
+      <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}

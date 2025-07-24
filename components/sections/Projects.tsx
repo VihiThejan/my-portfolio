@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { SectionBackground } from '@/components/ui/section-background';
 import { 
   Filter, 
   Search, 
@@ -140,8 +141,9 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 px-6">
-      <div className="container mx-auto max-w-7xl">
+    <section id="projects" className="py-20 px-6 relative">
+      <SectionBackground pattern="dots" variant="medium" />
+      <div className="container mx-auto max-w-7xl relative z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}

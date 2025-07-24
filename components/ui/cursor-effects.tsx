@@ -15,6 +15,7 @@ export function CursorEffects() {
   const [stars, setStars] = useState<Star[]>([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
 
   useEffect(() => {
     let starId = 0;
@@ -50,6 +51,30 @@ export function CursorEffects() {
       }
     };
 
+    const handleMouseDown = () => {
+      setIsClicking(true);
+      // Create burst of stars on click
+      for (let i = 0; i < 5; i++) {
+        const burstStar: Star = {
+          id: starId++,
+          x: mousePosition.x + (Math.random() - 0.5) * 40,
+          y: mousePosition.y + (Math.random() - 0.5) * 40,
+          size: Math.random() * 8 + 4,
+          delay: i * 0.05,
+        };
+
+        setStars(prevStars => [...prevStars, burstStar]);
+        
+        setTimeout(() => {
+          setStars(prevStars => prevStars.filter(star => star.id !== burstStar.id));
+        }, 2000);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsClicking(false);
+    };
+
     // Throttle mouse move events more aggressively
     let lastTime = 0;
     const throttledMouseMove = (e: MouseEvent) => {
@@ -61,11 +86,15 @@ export function CursorEffects() {
     };
 
     document.addEventListener('mousemove', throttledMouseMove);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
 
     return () => {
       document.removeEventListener('mousemove', throttledMouseMove);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, []);
+  }, [mousePosition]);
 
   return (
     <>
@@ -77,21 +106,23 @@ export function CursorEffects() {
           top: mousePosition.y - (isHovering ? 12 : 8),
         }}
         animate={{
-          scale: isHovering ? [1, 1.3, 1.1] : [1, 1.1, 1],
+          scale: isClicking ? [1, 0.8, 1.2] : isHovering ? [1, 1.3, 1.1] : [1, 1.1, 1],
         }}
         transition={{
-          duration: 0.3,
+          duration: isClicking ? 0.1 : 0.3,
           ease: "easeOut"
         }}
       >
         <div 
           className={`rounded-full transition-all duration-300 ${
-            isHovering 
-              ? 'w-6 h-6 bg-gradient-golden opacity-90 shadow-glow-golden-lg' 
-              : 'w-4 h-4 bg-golden-400 opacity-70 shadow-glow-golden'
+            isClicking
+              ? 'w-8 h-8 bg-gradient-golden opacity-100 shadow-glow-golden-lg animate-pulse'
+              : isHovering 
+                ? 'w-6 h-6 bg-gradient-golden opacity-90 shadow-glow-golden-lg' 
+                : 'w-4 h-4 bg-golden-400 opacity-70 shadow-glow-golden'
           }`} 
         />
-        {isHovering && (
+        {(isHovering || isClicking) && (
           <motion.div
             className="absolute inset-0 rounded-full bg-gradient-golden opacity-50"
             animate={{
@@ -99,7 +130,7 @@ export function CursorEffects() {
               opacity: [0.5, 0.2, 0.5],
             }}
             transition={{
-              duration: 1,
+              duration: isClicking ? 0.5 : 1,
               repeat: Infinity,
               ease: "easeInOut"
             }}

@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { IconWrapper } from '@/components/ui/icon-wrapper';
+import { SectionBackground } from '@/components/ui/section-background';
 import { 
   Brain, 
   Code, 
@@ -113,8 +114,9 @@ export function Skills() {
   };
 
   return (
-    <section id="skills" className="py-20 px-6 bg-muted/30">
-      <div className="container mx-auto max-w-6xl">
+    <section id="skills" className="py-20 px-6 bg-muted/30 relative">
+      <SectionBackground pattern="lines" variant="medium" />
+      <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}

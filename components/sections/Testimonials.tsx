@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { SectionBackground } from '@/components/ui/section-background';
 import { 
   Star, 
   Quote, 
@@ -104,8 +105,9 @@ export function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-20 px-6 bg-muted/30">
-      <div className="container mx-auto max-w-6xl">
+    <section id="testimonials" className="py-20 px-6 bg-muted/30 relative">
+      <SectionBackground pattern="waves" variant="subtle" />
+      <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}
