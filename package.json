@@ -11,6 +11,7 @@
     "submit-indexnow": "node submit-indexnow.js"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.9.0",
     "@next/swc-wasm-nodejs": "13.5.1",
     "@next/third-parties": "^15.3.4",
