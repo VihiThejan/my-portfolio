@@ -70,6 +70,17 @@ export function Navigation() {
     }
   };
 
+  const getThemeLabel = () => {
+    switch (theme) {
+      case 'dark':
+        return 'Dark Mode';
+      case 'light':
+        return 'Light Mode';
+      default:
+        return 'System Mode';
+    }
+  };
+
   if (!mounted) return null;
 
   return (
@@ -143,15 +154,24 @@ export function Navigation() {
 
           {/* Theme Toggle & Mobile Menu */}
           <div className="flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="transition-transform hover:scale-110"
-            >
-              {getThemeIcon()}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+            <div className="relative group">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="transition-transform hover:scale-110"
+              >
+                {getThemeIcon()}
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+              
+              {/* Theme Tooltip */}
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 px-3 py-2 bg-popover border border-border rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+                <div className="text-xs font-medium">{getThemeLabel()}</div>
+                <div className="text-xs text-muted-foreground">Click to cycle: Dark → Light → System</div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-2 h-2 bg-popover border-l border-t border-border rotate-45"></div>
+              </div>
+            </div>
 
             {/* Mobile Menu Button */}
             <Button

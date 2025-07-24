@@ -33,7 +33,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden py-8 lg:py-0">
       {/* Parallax Background Effects */}
       <ParallaxBackground />
       
@@ -92,7 +92,7 @@ export function Hero() {
       {/* Main Content */}
       <motion.div
         style={{ opacity, scale }}
-        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto"
+        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl lg:max-w-5xl mx-auto w-full hero-laptop-optimize"
       >
         
 
@@ -102,7 +102,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6">
             <span className="block text-foreground">Hi, I&apos;m</span>
             <SparkleEffect intensity="medium">
               <motion.span 
@@ -117,7 +117,7 @@ export function Hero() {
         </motion.div>
 
         {/* Animated Role with Icon */}
-        <div className="h-20 flex items-center justify-center mb-8">
+        <div className="h-16 lg:h-20 flex items-center justify-center mb-6 lg:mb-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentRole}
@@ -125,17 +125,17 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-3"
+              className="flex items-center gap-2 lg:gap-3"
             >
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               >
                 {React.createElement(roles[currentRole].icon, {
-                  className: "w-8 h-8 text-primary"
+                  className: "w-6 h-6 lg:w-8 lg:h-8 text-primary"
                 })}
               </motion.div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-muted-foreground">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-muted-foreground">
                 {roles[currentRole].text}
               </h2>
             </motion.div>
@@ -147,9 +147,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-12"
+          className="mb-8 lg:mb-12"
         >
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4">
             Leading <span className="font-semibold text-primary neon-text">Vihi IT Solutions</span> to 
             craft exceptional digital experiences. Transforming ideas into powerful, 
             scalable solutions that drive business growth and innovation.
@@ -158,7 +158,7 @@ export function Hero() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="w-24 h-1 gradient-brand mx-auto mt-6 rounded-full"
+            className="w-20 lg:w-24 h-1 gradient-brand mx-auto mt-4 lg:mt-6 rounded-full"
           />
         </motion.div>
 
@@ -167,15 +167,15 @@ export function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+          className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-center mb-8 lg:mb-12 px-4"
         >
           <SparkleEffect intensity="low">
             <Button
               size="lg"
               onClick={() => scrollToSection('projects')}
-              className="gradient-brand hover:shadow-glow-lg hover:scale-105 transition-all duration-300 group px-8 py-6 text-lg"
+              className="gradient-brand hover:shadow-glow-lg hover:scale-105 transition-all duration-300 group px-6 lg:px-8 py-4 lg:py-6 text-base lg:text-lg w-full sm:w-auto"
             >
-              <Sparkles className="mr-2 h-5 w-5 group-hover:animate-pulse" />
+              <Sparkles className="mr-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:animate-pulse" />
               Explore My Work
               <motion.span
                 className="ml-2"
@@ -190,9 +190,9 @@ export function Hero() {
             variant="outline"
             size="lg"
             onClick={() => scrollToSection('contact')}
-            className="gradient-brand-border hover:bg-primary/5 hover:scale-105 transition-all duration-300 px-8 py-6 text-lg"
+            className="gradient-brand-border hover:bg-primary/5 hover:scale-105 transition-all duration-300 px-6 lg:px-8 py-4 lg:py-6 text-base lg:text-lg w-full sm:w-auto"
           >
-            <Mail className="mr-2 h-5 w-5" />
+            <Mail className="mr-2 h-4 w-4 lg:h-5 lg:w-5" />
             Let&apos;s Connect
           </Button>
         </motion.div>
@@ -202,7 +202,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex justify-center items-center gap-6"
+          className="flex justify-center items-center gap-4 lg:gap-6 px-4"
         >
           {[
             { icon: Github, href: 'https://github.com/VihiThejan', label: 'GitHub', color: 'hover:text-golden-600 dark:hover:text-golden-400' },
